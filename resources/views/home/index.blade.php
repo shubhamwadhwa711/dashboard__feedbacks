@@ -1,5 +1,5 @@
 @extends('app')
-
+@section('title', $title)
 @section('content')
 
 <!-- Begin Page Content -->
