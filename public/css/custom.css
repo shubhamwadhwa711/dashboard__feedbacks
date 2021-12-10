@@ -1,0 +1,506 @@
+ul {
+	list-style: none;
+	padding: 0;
+}
+p {
+	margin: 0;
+}
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+.vip__dashboard-logo i {
+    font-size: 32px;
+    color: #4e73df;
+}
+.vip-sticky__action {
+    background: white;
+    position: sticky;
+    right: 0;
+}
+.custom-control-input-success:checked ~ .custom-control-label::before {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.custom-control-input-danger:checked ~ .custom-control-label::before {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+.custom-control-input-warning:checked ~ .custom-control-label::before {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+.custom-control-input-info:checked ~ .custom-control-label::before {
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+}
+
+/* Large toggl switches */
+.custom-switch-lg .custom-control-label::before {
+    left: -2.25rem;
+    width: 3rem;
+    border-radius: 1.5rem;
+}
+
+.custom-switch-lg .custom-control-label::after {
+    top: calc(.25rem + 3px);
+    left: calc(-2.25rem + 4px);
+    width: calc(1.5rem - 6px);
+    height: calc(1.5rem - 6px);
+    border-radius: 1.5rem;
+}
+
+.custom-switch-lg .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(1.4rem);
+}
+
+.custom-switch-lg .custom-control-label::before {
+    height: 1.5rem;
+}
+
+.custom-switch-lg .custom-control-label {
+    padding-left: 1.5rem;
+    line-height: 2.2rem;
+}
+/*Wallet CSS*/
+.vip__wallet-box .vip__total-balance {
+  border: 1px solid #e9ecef;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.vip__wallet-box .vip__total-balance h4{
+  font-size: 12px;
+  margin: 0;
+}
+.vip__wallet-box .vip__total-balance p{
+  font-size: 16px;
+  color: #08c;
+  font-weight: 700;
+}
+.vip__withdraw-box h5 {
+  font-size: 24px;
+  margin: 20px 0;
+}
+.vip__withdraw-box h6 {
+  font-size: 18px;
+  margin: 20px 0;
+}
+.vip__withdraw-box ul li {
+  margin-right: 10px;
+}
+#withdrawBank {
+  display: none;
+}
+#withdrawUPI {
+  display: none;
+}
+#walletTooltip {
+  position: absolute;
+  top: 27px;
+  width: 350px;
+  border-radius: 2px;
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+  background: #FFF;
+  padding: 10px;
+  display: none;
+  z-index: 999;
+}
+#walletTooltip p {
+  margin-bottom: 0;
+  color: #000;
+}
+#walletTooltip th, #walletTooltip td {
+  margin-bottom: 0;
+  color: #000;
+}
+
+.vip__updates-box .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
+	font-size: 11px;
+}
+.vip__updates-box .vip__update-item {
+	padding: 15px 20px;
+	margin: 20px 0;
+	border-radius: 5px;
+	background-color: #5a5c69;
+}
+.vip__updates-box .vip__update-item p{
+	color: #fff;
+}
+.vip__updates-box .vip__update-item.update {
+	background-color: #2276fe;
+}
+.vip__updates-box .vip__update-item.comment {
+	background-color: #e76f51;
+}
+.vip__old-orders p {
+	font-weight: bold;
+	font-size: 14px;
+}
+.vip__old-orders p span {
+	color: #5a5c69;
+}
+.table-bordered td, .table-bordered th {
+	font-size: 12px;
+}
+.table-bordered td {
+  vertical-align: middle !important;
+}
+.table-responsive {
+	max-height: 160px;
+	overflow: scroll;
+	border: 1px solid #bababa;
+}
+.vip__wallet-box table th, .vip__wallet-box table td {
+    font-size: 11px;
+}
+body:not(.loaded)>*:not(.loading-overlay) {
+    visibility: visible !important;
+}
+.searchModalBot {
+    max-width: 800px !important;
+    width: 800px !important;
+}
+.Advanceformwcs .form-control {
+    display: block;
+    width: 100%;
+    height: 36px;
+    border-width: 0 0 2px 0;
+    background: 0;
+    border-color: #c1c1c1;
+    line-height: 26px;
+    font-size: 1em;
+    color: #223495;
+    padding-left: 2px;
+}
+.AdvanceHeadwcs h4{
+  text-align: left;
+  background-color: #fff;
+  display: inline-block;
+  padding: 0 10px;
+  color: #000;
+  font-size: 18px;
+}
+.p-relative{
+  position: relative;
+}
+.AdvanceHeadwcs{
+  top: -24px;
+}
+.Advanceformwcs .border-show{
+  border:2px solid #c1c1c1;
+  border-radius: 5px
+}
+.Advanceformwcs .input-text:focus {
+    outline: 0;
+}
+
+
+
+
+
+/* Search Latest */
+.vps__search-btns {
+    margin: 20px 0;
+}
+.vps__search-dialog .nav-tabs .nav-item.show .nav-link, .vps__search-dialog .nav-tabs .nav-link.active{
+    background-color: #08c;
+    color: #fff;
+}
+.vps__search-dialog .vps__modal-title {
+    margin: 10px 0 20px 0;
+    font-size: 18px;
+    color: #000;
+}
+.vps__search-dialog .nav-tabs .nav-link {
+	border-radius: 0 !important;
+	font-size: 14px;
+	color: #08c;
+}
+.vps__search-dialog .nav-tabs .nav-link:hover {
+	color: #08c !important;
+}
+.vps__search-dialog .nav-tabs .nav-link:hover .active{
+	color: #fff !important;
+}
+.vps__search-dialog .form-control {
+    height: 48px;
+    margin-bottom: 1rem;
+    padding: 1.25rem 1.5rem;
+    transition: all .3s;
+    border: 1px solid #e6e6e6;
+    border-radius: 0;
+    background-color: #fff;
+    color: #7a7d82;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.vps__search-dialog .vps__modal-title span {
+    display: block;
+    font-weight: 300;
+    margin: 5px 0 0 0;
+}
+.vps__search-dialog .vps__bulk-searchbox {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+.vps__search-dialog .vps__bulk-searchbox li {
+    color: #000;
+    font-weight: 700;
+}
+.vps__search-dialog .vps__bulk-searchbox li:last-child {
+    margin-left: 5px;
+}
+.vps__search-dialog .vps__bulk-searchbox input {
+    max-width: 75px;
+    margin: 0 0 0 5px;
+}
+.vps__search-dialog label.error {
+    position: absolute;
+    left: 15px;
+}
+.vps__search-dialog .nav.nav-tabs {
+    border-bottom: 0;
+}
+.vps__search-dialog .nav.nav-tabs a {
+    transition: 0.2s all ease-in;
+}
+.vps__search-dialog .nav.nav-tabs a:hover {
+    color: #fff;
+}
+.vps__search-dialog .nav.nav-tabs a.disabled{
+    color: #fff;
+    cursor: not-allowed;
+}
+.vps__placement-search form .form-control {
+    max-width: 75px;
+    text-align: center;
+}
+.vps__placement-search form ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.vps__placement-search form ul li {
+    margin: 0 10px;
+    text-align: center;
+}
+.vps__placement-search form ul li p{
+    font-size: 12px;
+    margin: 0;
+}
+.vps__placement-search form ul li:first-child {
+    margin-left: 0;
+}
+.vps__placement-search form ul li:last-child {
+    margin-right: 0;
+}
+.vps__placement-search form .vps__clear-btn {
+    position: absolute;
+    right: 15px;
+    top: 80px;
+    padding: 5px 20px;
+    background: #08c;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.vps__placement-search form .vps__clear-btn:hover {
+    text-decoration: none;
+}
+.vps__placement-search form .vps__clear-btn:focus {
+    text-decoration: none;
+}
+.vip__main-box .btn-primary {
+    background: transparent;
+    border: 0;
+    color: #4e73df;
+    padding: 0;
+    text-decoration: underline;
+}
+.vip__main-box .btn-danger {
+    background: transparent;
+    border: 0;
+    color: #e74a3b;
+    padding: 0;
+    text-decoration: underline;
+}
+.vip__main-box .btn-secondary {
+    background: transparent;
+    border: 0;
+    color: #858796;
+    padding: 0;
+    text-decoration: underline;
+}
+.vip__main-box .sm-btn {
+    font-size: 12px;
+}
+.vip__main-box .btn-bg {
+    background: #4e73df;
+    border: 1px solid #4e73df;
+    color: #fff;
+    padding: 0 10px;
+    text-decoration: none;
+}
+/* Sold Card Design */
+.vps__sold-card-item {
+    background: #dcdcdc;
+    position: relative;
+    border-radius: 5px;
+    border-left: 4px solid #08c;
+    margin: 20px 0;
+}
+.vps__sold-card-item:hover {
+    transform: scale(1.05);
+    transition: all 0.5s ease;
+}
+.vps__sold-card-item header {
+    background: linear-gradient(90deg, rgba(0,136,204,1)5%, rgba(97,201,252,1) 76%);
+    padding: 20px;
+    text-align: center;
+}
+.vps__sold-card-item header h2 {
+    font-size: 30px;
+    color: #000;
+    margin-bottom: 0px;
+    padding: 10px 0px;
+}
+.vps__sold-card-item::after {
+    content: 'Sold Out';
+    position: absolute;
+    right: -25px;
+    background: #fff;
+    color: #08c;
+    transform: rotate(45deg);
+    top: 10px;
+    padding: 0 20px 0 30px;
+}
+.vps__sold-card-item footer p {
+    padding: 10px 20px;
+    color: #000;
+}
+.vps__sold-card-item footer p span {
+    font-weight: 700;
+}
+
+/* Sold Card Design End*/
+
+/* Search Design */
+.vps__bulk-searchPage {
+    margin: 20px 0;
+}
+.search__header h2 {
+    margin: 0;
+    background: linear-gradient(90deg, rgba(0,136,204,1) 45%, rgba(97,201,252,1) 76%);
+    color: #FFF;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.visible-xs {
+    display: none;
+}
+/* Wishlist Item Container End */
+/* Search Design End */
+
+
+/* Media */
+@media(max-width: 768px) {
+    .hidden-xs {
+        display: none;
+    }
+    .visible-xs {
+        display: block;
+    }
+    .searchModalBot {
+        max-width: 100% !important;
+        width: auto !important;
+    }
+    .vps__search-dialog .modal-header {
+        padding: 0 5px;
+    }
+    .vps__search-dialog .nav.nav-tabs {
+        display: block;
+        text-align: center;
+    }
+    .nav.nav-tabs .nav-item+.nav-item {
+        margin-left: 0;
+    }
+    .vps__placement-search form .form-control {
+        max-width: 50px;
+        text-align: center;
+        margin: 0;
+        font-size: 12px;
+        padding: 0;
+    }
+    .vps__search-dialog .nav.nav-tabs {
+        border-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: initial;
+    }
+    .vps__search-dialog .nav.nav-tabs a {
+        transition: 0.2s all ease-in;
+        font-size: 12px;
+    }
+    .vps__search-btns {
+        margin: 5px 0;
+    }
+    .vps__search-btns .fltrByTag {
+        font-size: 9px;
+        margin: 5px 0;
+    }
+}
+@media (max-width: 480px) {
+    .Advanceformwcs .alert {
+        margin-bottom: 0px;
+    }
+    .Advanceformwcs .form-control {
+        height: 30px;
+        margin-bottom: 5px !important;
+        font-size: 12px;
+    }
+    .AdvanceHeadwcs {
+        top: -15px;
+        position: absolute !important;
+    }
+    .AdvanceHeadwcs h4 {
+        font-size: 10px;
+    }
+    .Advanceformwcs .modal-footer {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+    .Advanceformwcs .modal-body {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+    .vps__placement-search form .form-control {
+        max-width: 50px;
+        min-width: 20px;
+        height: 25px;
+        text-align: center;
+        margin: 0;
+        font-size: 12px;
+        padding: 0;
+    }
+    .vps__placement-search form ul li {
+        margin: 0 2px;
+    }
+}
+@media (max-width: 420px) {
+    .vps__search-dialog .nav.nav-tabs a {
+        font-size: 9px;
+    }
+}
