@@ -678,15 +678,15 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form method="POST" id="editGST-form">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter/Edit GST...">
+                <input type="input" class="form-control" name="GST_no" placeholder="Enter/Edit GST...">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editGST-form">Save changes</button>
           </div>
         </div>
       </div>
@@ -702,7 +702,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="editASANA-form" method="POST">
               <div class="form-group">
                 <input type="input" class="form-control" placeholder="Enter/ASANA URL...">
               </div>
@@ -726,24 +726,24 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="editAccountDetails-form" method="PUT">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter Phonepe...">
+                <input type="input" class="form-control" name="phone" placeholder="Enter Phonepe...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter Google Pay...">
+                <input type="input" class="form-control" name="googlepay" placeholder="Enter Google Pay...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter Bank Account Number...">
+                <input type="input" class="form-control" name="account_no" placeholder="Enter Bank Account Number...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter UPI...">
+                <input type="input" class="form-control" name="upi_no" placeholder="Enter UPI...">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editAccountDetails-form">Save changes</button>
           </div>
         </div>
       </div>

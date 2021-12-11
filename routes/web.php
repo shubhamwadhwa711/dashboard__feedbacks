@@ -12,8 +12,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('home', function(){
+
+Route::get('/', 'HomeController@Login');
+Route::get('/login', function(){
 	return redirect('/'); 
 });
-Route::get('/login', 'HomeController@Login');
+Route::get('/dashboard', 'HomeController@index');
+Route::post('/login', 'HomeController@LoginFunc');
+Route::post('/logout', 'HomeController@Logout');
+Route::post('/add-edit-gst', 'HomeController@AddEditGST');
+Route::put('/edit-acount-details', 'HomeController@EditAccountDetails');
+
