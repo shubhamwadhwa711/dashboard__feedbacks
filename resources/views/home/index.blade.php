@@ -18,11 +18,11 @@
                         <h6 class="m-0 font-weight-bold text-primary">User Bio</h6>
                     </div>
                     <div class="card-body">
-                        <p class="mb-1"><i class="fas fa-user text-dark"></i> Avinash Kumar Singh</p>
-                        <p class="mb-1"><i class="fas fa-mobile text-dark"></i> +91 7002312511</p>
-                        <p class="mb-1"><i class="fas fa-envelope text-dark"></i> avinashks.me@gmail.com</p>
-                        <p class="mb-1"><i class="fas fa-home text-dark"></i> Bangalore, Karnataka, 560102</p>
-                        <p class="mb-1"><i class="fas fa-address-card text-dark"></i> GST - ABCD1234 <button class="btn btn-primary sm-btn" data-toggle="modal" data-target="#editGST">Enter/Edit GST</button></p>
+                        <p class="mb-1"><i class="fas fa-user text-dark"></i> <span id="name">Avinash Kumar Singh</span></p>
+                        <p class="mb-1"><i class="fas fa-mobile text-dark"></i> <span id="mobile">+91 7002312511</span></p>
+                        <p class="mb-1"><i class="fas fa-envelope text-dark"></i> <span id="email">avinashks.me@gmail.com</span></p>
+                        <p class="mb-1"><i class="fas fa-home text-dark"></i> <span id="address">Bangalore, Karnataka, 560102</span></p>
+                        <p class="mb-1"><i class="fas fa-address-card text-dark"></i> GST - <span id="gst">ABCD1234</span> <button class="btn btn-primary sm-btn" data-toggle="modal" data-target="#editGST">Enter/Edit GST</button></p>
                         <ul class="d-flex align-items-center justify-content-between mt-3 mb-0">
                             <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAccountDetails">Account Details</button></li>
                             <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#editBioDetails">Edit</button></li>
@@ -43,7 +43,7 @@
                             <div class="vip__wallet-box">
                                 <div class="vip__total-balance text-center d-flex align-items-center justify-content-between">
                                     <h4><i class="fa fa-university"></i> Total Wallet Balance</h4>
-                                    <p>₹5000.00</p>
+                                    <p>₹<span id="wallet_balance">5000.00</span></p>
                                 </div>
                                 <div class="vip__balance-table">
                                     <table class="table mb-0">
@@ -56,11 +56,11 @@
                                         <tbody>
                                             <tr>
                                                 <td>On Hold</td>
-                                                <td>₹500.00</td>
+                                                <td>₹<span id="hold_balance">500.00</td>
                                             </tr>
                                             <tr>
                                                 <td>Withdrawn</td>
-                                                <td>₹3500.00</td>
+                                                <td>₹<span id="withdrawn_balance">3500.00</span></td>
                                             </tr>
                                         </tbody>
                                     </table>

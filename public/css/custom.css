@@ -504,3 +504,6 @@ body:not(.loaded)>*:not(.loading-overlay) {
         font-size: 9px;
     }
 }
+.card-body span {
+    text-transform: capitalize;
+}

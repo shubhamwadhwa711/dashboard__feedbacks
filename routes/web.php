@@ -18,6 +18,7 @@ Route::get('/login', function(){
 	return redirect('/'); 
 });
 Route::get('/dashboard', 'HomeController@index');
+Route::post('/search', 'HomeController@search');
 Route::post('/login', 'HomeController@LoginFunc');
 Route::post('/logout', 'HomeController@Logout');
 Route::post('/add-edit-gst', 'HomeController@AddEditGST');
