@@ -4,3 +4,6 @@
     color: red;
     font-size: 14px;
 }
+.form-inputfullwidth .form-control {
+    width: 100%;
+}

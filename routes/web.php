@@ -21,6 +21,7 @@ Route::get('/dashboard', 'HomeController@index');
 Route::post('/search', 'HomeController@search');
 Route::post('/login', 'HomeController@LoginFunc');
 Route::post('/logout', 'HomeController@Logout');
+Route::post('/whatsapp', 'HomeController@whatsappsend');
 Route::post('/add-edit-gst', 'HomeController@AddEditGST');
 Route::put('/edit-acount-details', 'HomeController@EditAccountDetails');
 

@@ -10,7 +10,8 @@ jQuery(document).ready(function($){
         editGSTform:'/add-edit-gst',
         editAccountDetailsform:'/edit-acount-details',
         userLoginform:'/login',
-        searchform:'/search'
+        searchform:'/search',
+        whatsappform:'/whatsapp'
     };
     async function isEmptyForm(id){
         var formid = '#'+id+'';
@@ -34,6 +35,27 @@ jQuery(document).ready(function($){
         $("#hold_balance").text(parseFloat(data.cf_2181).toFixed(2));
         $("#withdrawn_balance").text(parseFloat(data.cf_2177).toFixed(2));
     }
+    //whatsapp
+    function whatsappmsg(resDate){
+        if(resDate.data != undefined){
+            var allresData = JSON.parse(resDate.data)
+            if(allresData.status == 'success'){
+                SuccessMessage();
+            }
+        }
+    }
+    function SuccessMessage(){
+        Swal.fire(
+            '',
+            'Success',
+            'success'
+          )
+    }
+    //whats app phonenumber set
+    function whatsappphoneset(resDate){
+        var allresData = JSON.parse(resDate.data);
+        $('#whatsapp_number').val(allresData.mobile);
+    }
     function ajaxSendData(formid,formData, formUrl,formMethod){
         if(!$(formid).find('.form-group-err').hasClass('d-none')){
             $(formid).find('.form-group-err').addClass('d-none');
@@ -44,14 +66,23 @@ jQuery(document).ready(function($){
             type: formMethod,
             data:formData,
             success: function(data) {
-                //console.log(data.data);
-                var status = JSON.parse(data.data);
-                //console.log(status.status);
-                switch (data.componet) { 
+                var resDate = JSON.parse(data);
+                if(resDate.data != undefined){
+                    var allresData = JSON.parse(resDate.data)
+                    if(allresData.status == 'failed'){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!'
+                          })
+                    }
+                }
+                switch (resDate.componet) {
                     case 'all':
-                        userbio(data);
-                        wallet(data);
-                        var data1 = JSON.parse(data.data, true);
+                        userbio(resDate);
+                        wallet(resDate);
+                        whatsappphoneset(resDate);
+                        var data1 = JSON.parse(resDate.data, true);
                         if(data1.cf_2236 != ''){
                             $("#ref_by").text(data1.cf_2236);
                         }
@@ -59,7 +90,7 @@ jQuery(document).ready(function($){
                             $("#ref_by").text('.....');
                         }
                         $('#next_follow_date').val(data1.cf_2238);
-                        
+                        SuccessMessage();
                         break;
                     case 'prototype': 
                         alert('prototype Wins!');
@@ -67,26 +98,20 @@ jQuery(document).ready(function($){
                     case 'mootools': 
                         alert('mootools Wins!');
                         break;		
-                    case 'dojo': 
-                        alert('dojo Wins!');
+                    case 'whatapp': 
+                        whatsappmsg(resDate);
                         break;
                     default:
                         alert('Nobody Wins!');
                 }
-                if(status.status == 'failed'){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!'
-                      })
-                }
-                if(data.redirect != undefined){
-                    var rdurl = window.location.origin+data.redirect;
+               
+                if(resDate.redirect != undefined){
+                    var rdurl = window.location.origin+resDate.redirect;
                     window.location.replace(rdurl);
                 }
-                else if(data.error != undefined){
+                else if(resDate.error != undefined){
                     $(formid).find('.form-group-err').removeClass('d-none');
-                    $(formid).find('.form-group-err').text(data.message)
+                    $(formid).find('.form-group-err').text(resDate.message)
                 }
             },
             fail: function (data) {

@@ -69,6 +69,26 @@ p {
     padding-left: 1.5rem;
     line-height: 2.2rem;
 }
+.card.shadow {
+    box-shadow: 0 0 0 !important;
+    border: 0;
+}
+.card {
+    background: transparent !important;
+}
+.card .card-header {
+    background: #fff;
+}
+.card-body {
+    background: #fff;
+}
+.card-body.collapse {
+    border: 1px solid #e3e6f0;
+    border-top: 0;
+}
+.card .card-header[data-toggle=collapse]::after {
+    top: -7px;
+}
 /*Wallet CSS*/
 .vip__wallet-box .vip__total-balance {
   border: 1px solid #e9ecef;
@@ -503,7 +523,4 @@ body:not(.loaded)>*:not(.loading-overlay) {
     .vps__search-dialog .nav.nav-tabs a {
         font-size: 9px;
     }
-}
-.card-body span {
-    text-transform: capitalize;
 }
