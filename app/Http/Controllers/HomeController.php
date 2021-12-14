@@ -62,13 +62,119 @@ class HomeController extends Controller
         $request->session()->forget('user');
         return response()->json(['success'=>'Successfully!','redirect'=>'/login']);
     }
+    //update addasanafunc 
+    public function addasanafunc(Request $request){
+        $contactid = $request->input('contactid');
+        $asana_url = $request->input('asana_url');
+        $CurlPost = ['contactid'=>$contactid, 'cf_2242'=>$asana_url ];
+        $curl = curl_init();
+        curl_setopt_array(
+            $curl, 
+            array(
+            CURLOPT_URL => "https://upc.vipnumbershop.com/contact_update.php",
+            CURLOPT_SSL_VERIFYHOST=>false,
+            CURLOPT_SSL_VERIFYPEER=>false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_HTTPHEADER => array("Cache-Control: no-cache",),
+            CURLOPT_POSTFIELDS=>$CurlPost,
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
 
+        curl_close($curl);
+
+        if ($err) {
+            $obj = $err;
+        } else {
+            $obj = $response;
+        }
+        $output = ['data'=> $obj,'componet'=> 'notepad'];
+        return response()->json(json_encode($output));
+    }
+    //send description
+    public function descriptionsend(Request $request){
+        $contactid = $request->input();
+        $mobile = $request->input();
+        $description = $request->input();
+        $curl = curl_init();
+        dd();
+        //$CurlPost = ['message_type'=>'Search','cf_2246'=> $url,'whatsapp_withccode'=>'9478070524'];
+        curl_setopt_array(
+            $curl, 
+            array(
+            CURLOPT_URL => "https://upc.vipnumbershop.com/contact_update.php",
+            CURLOPT_SSL_VERIFYHOST=>false,
+            CURLOPT_SSL_VERIFYPEER=>false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_HTTPHEADER => array("Cache-Control: no-cache",),
+            CURLOPT_POSTFIELDS=>$CurlPost,
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            $obj = $err;
+        } else {
+            $obj = $response;
+        }
+        $output = ['data'=> $obj,'componet'=> 'notepad'];
+        return response()->json(json_encode($output));
+    }
+    //send link to whatsapp
+    public function whatsapplinksend(Request $request){
+        $search_number = $request->input('search');
+        $rtp = $request->input('rtp');
+        $placement = $request->input('placement');
+        $url = 'https://vipnumbershop.com/search/'.'?search='.$search_number.'&rtp='.$rtp.'&placement='.$placement;
+
+        $curl = curl_init();
+        $CurlPost = ['message_type'=>'Search','cf_2246'=> $url,'whatsapp_withccode'=>'9478070524'];
+        curl_setopt_array(
+            $curl, 
+            array(
+            CURLOPT_URL => "https://upc.vipnumbershop.com/create_whatsapp.php",
+            CURLOPT_SSL_VERIFYHOST=>false,
+            CURLOPT_SSL_VERIFYPEER=>false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_HTTPHEADER => array("Cache-Control: no-cache",),
+            CURLOPT_POSTFIELDS=>$CurlPost,
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            $obj = $err;
+        } else {
+            $obj = $response;
+        }
+        $output = ['data'=> $obj,'componet'=> 'search'];
+        return response()->json(json_encode($output));
+    }
     //send whatsapp
     public function whatsappsend(Request $request){
         $whatsapp_number = $request->input('whatsapp_number');
         $whatapp_msg = $request->input('whatsapp_msg');
         $curl = curl_init();
-        $CurlPost = ['message_type'=>'Send','message_body'=> $whatsapp_number,'whatsapp_withccode'=>$whatapp_msg];
+        $CurlPost = ['message_type'=>'Send','message_body'=> $whatapp_msg,'whatsapp_withccode'=>$whatsapp_number];
         curl_setopt_array(
             $curl, 
             array(

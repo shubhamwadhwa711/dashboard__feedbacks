@@ -1,4 +1,10 @@
 jQuery(document).ready(function($){
+    function valueset(){
+        var contactid = localStorage.getItem('contactid') || undefined;
+        if(contactid != undefined){
+            $('.contactid').val(contactid);
+        }
+    }
     
     //Setup Token in Ajax Call
     $.ajaxSetup({
@@ -11,7 +17,10 @@ jQuery(document).ready(function($){
         editAccountDetailsform:'/edit-acount-details',
         userLoginform:'/login',
         searchform:'/search',
-        whatsappform:'/whatsapp'
+        whatsappform:'/whatsapp',
+        simplesearchform:'/whatsapplink',
+        descriptionform:'/description',
+        editASANAform:'/addasana'
     };
     async function isEmptyForm(id){
         var formid = '#'+id+'';
@@ -28,6 +37,8 @@ jQuery(document).ready(function($){
         $("#email").text(data.email);
         $("#address").text(data.mailingstreet);
         $("#gst").text(data.cf_2213);
+        localStorage.setItem('contactid', data.contactid);
+        valueset();
     }
     function wallet(amount){
         var data = JSON.parse(amount.data, true);        
@@ -67,8 +78,10 @@ jQuery(document).ready(function($){
             data:formData,
             success: function(data) {
                 var resDate = JSON.parse(data);
+                
                 if(resDate.data != undefined){
-                    var allresData = JSON.parse(resDate.data)
+                    var allresData = JSON.parse(resDate.data);
+                    console.log(allresData);
                     if(allresData.status == 'failed'){
                         Swal.fire({
                             icon: 'error',
@@ -92,11 +105,11 @@ jQuery(document).ready(function($){
                         $('#next_follow_date').val(data1.cf_2238);
                         SuccessMessage();
                         break;
-                    case 'prototype': 
+                    case 'description': 
                         alert('prototype Wins!');
                         break;
-                    case 'mootools': 
-                        alert('mootools Wins!');
+                    case 'search': 
+                        SuccessMessage();
                         break;		
                     case 'whatapp': 
                         whatsappmsg(resDate);
@@ -134,6 +147,7 @@ jQuery(document).ready(function($){
             success: function(data) {
                 if(data.redirect != undefined){
                     var rdurl = window.location.origin+data.redirect;
+                    localStorage.clear();
                     window.location.replace(rdurl);
                 }
             },

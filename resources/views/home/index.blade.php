@@ -82,8 +82,14 @@
                       <h6 class="m-0 font-weight-bold text-primary">Notepad</h6>
                   </div>
                   <div class="card-body collapse" id="notepadBox">
+                  <form method="POST" id="description-form">
+                    <div class="form-group">
                       <textarea class="form-control" placeholder="Enter Notes" rows="3"></textarea>
-                      <button class="btn btn-primary mt-2">Save for next time</button>
+                    </div>
+                    <button type="button" class="btn btn-primary submit-btn-form" data-form-id="description-form">Save for next time</button>
+                  </form>
+                      
+                      
                   </div>
               </div>
            
@@ -202,23 +208,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h6 class="mt-4">Place Order/Add to Wishlist</h6>
-                                <form
-                                    class="d-none d-sm-inline-block form-inline mb-4">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Number..."
-                                            aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary btn-bg" type="button">
-                                                <i class="fas fa-search fa-sm"></i> Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="ml-4 mt-2">
+                        <div class="my-3">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -257,6 +247,23 @@
                                     </table>
                                 </div>
                             </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h6 class="mt-4">Place Order/Add to Wishlist</h6>
+                                <form
+                                    class="d-none d-sm-inline-block form-inline mb-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Number..."
+                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-bg" type="button">
+                                                <i class="fas fa-search fa-sm"></i> Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -706,13 +713,14 @@
           <div class="modal-body">
             <form id="editASANA-form" method="POST">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter/ASANA URL...">
+                <input type="input" class="form-control" name="asana_url" placeholder="Enter/ASANA URL...">
+                <input type="hidden" class="contactid" name="contactid"/>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editASANA-form">Save changes</button>
           </div>
         </div>
       </div>
@@ -934,7 +942,7 @@
                             <div class="vps__simple-search">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="/search/" method="get">
+                                        <form id="simple-search-form" method="POST">
                                             <input style="width:100%;" autocomplete="off" type="search" class="form-control inputSearchMdl" name="search" id="inputSearchMdl" placeholder="Enter Number" required="" value="" autofocus="">
                                             <input hidden="" name="rtp" value="false">
                                             <input required="" type="radio" name="placement" id="s_start_with" value="1"> <label for="s_start_with">Start With</label>
@@ -997,7 +1005,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <input type="submit" value="Search" class="btn btn-primary btn-bg py-2">
+                                            <input type="submit" value="Search" data-form-id="simple-search-form" class="submit-btn-form btn btn-primary btn-bg py-2">
                                         </form>
                                     </div>
                                 </div>

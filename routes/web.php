@@ -22,6 +22,9 @@ Route::post('/search', 'HomeController@search');
 Route::post('/login', 'HomeController@LoginFunc');
 Route::post('/logout', 'HomeController@Logout');
 Route::post('/whatsapp', 'HomeController@whatsappsend');
+Route::post('/description', 'HomeController@descriptionsend');
+Route::post('/addasana', 'HomeController@addasanafunc');
+Route::post('/whatsapplink', 'HomeController@whatsapplinksend');
 Route::post('/add-edit-gst', 'HomeController@AddEditGST');
 Route::put('/edit-acount-details', 'HomeController@EditAccountDetails');
 
