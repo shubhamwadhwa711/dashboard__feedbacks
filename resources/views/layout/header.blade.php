@@ -11,12 +11,12 @@
 
                     <!-- Topbar Search -->
                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        id="search-form" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Number..."
+                            <input type="text" name="search_number" value="9780097800" class="form-control bg-light border-0 small" placeholder="Enter Number..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary btn-bg" type="button">
+                                <button class="btn btn-primary btn-bg submit-btn-form" data-form-id="search-form" type="button">
                                     <i class="fas fa-search fa-sm"></i> Submit
                                 </button>
                             </div>
@@ -53,7 +53,7 @@
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <div class="vip__refer-box d-flex align-items-center">
-                                <p class="m-0 mr-2 alert alert-secondary">Referred By <strong>+91 7002312511</strong></p>
+                                <p class="m-0 mr-2 alert alert-secondary">Referred By <strong id="ref_by">+91 7002312511</strong></p>
                             </div>
                         </li>
 
@@ -61,7 +61,7 @@
                         <li class="nav-item dropdown no-arrow mx-1">
                             <div class="vip__refer-box d-flex align-items-center form-inline">
                                 <div class="form-group form-check">
-                                    Next Follow Up <input type="date" placeholder="Select Date" class="form-control ml-2">
+                                    Next Follow Up <input type="date" placeholder="Select Date" class="form-control ml-2" id="next_follow_date">
                                 </div>
                             </div>
                         </li>
@@ -82,7 +82,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Deepak</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -97,7 +97,7 @@
                                     Settings
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" id="userLogout" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

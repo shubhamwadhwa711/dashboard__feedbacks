@@ -1,5 +1,5 @@
 @extends('app')
-
+@section('title', $title)
 @section('content')
 
 <!-- Begin Page Content -->
@@ -7,22 +7,22 @@
 
 <!-- Content Row -->
 <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-9 mb-2">
         <!-- Content Column -->
         <div class="row display-flex">
             
             <div class="col-lg-4 mb-2">
 
-                <div class="card shadow mb-1 h-100">
-                    <div class="card-header py-2">
+                <div class="card shadow mb-1">
+                    <div class="card-header py-2" data-toggle="collapse" href="#userBioBox" role="button" aria-expanded="false" aria-controls="userBioBox">
                         <h6 class="m-0 font-weight-bold text-primary">User Bio</h6>
                     </div>
-                    <div class="card-body">
-                        <p class="mb-1"><i class="fas fa-user text-dark"></i> Avinash Kumar Singh</p>
-                        <p class="mb-1"><i class="fas fa-mobile text-dark"></i> +91 7002312511</p>
-                        <p class="mb-1"><i class="fas fa-envelope text-dark"></i> avinashks.me@gmail.com</p>
-                        <p class="mb-1"><i class="fas fa-home text-dark"></i> Bangalore, Karnataka, 560102</p>
-                        <p class="mb-1"><i class="fas fa-address-card text-dark"></i> GST - ABCD1234 <button class="btn btn-primary sm-btn" data-toggle="modal" data-target="#editGST">Enter/Edit GST</button></p>
+                    <div class="card-body collapse" id="userBioBox">
+                        <p class="mb-1"><i class="fas fa-user text-dark"></i> <span id="name">Avinash Kumar Singh</span></p>
+                        <p class="mb-1"><i class="fas fa-mobile text-dark"></i> <span id="mobile">+91 7002312511</span></p>
+                        <p class="mb-1"><i class="fas fa-envelope text-dark"></i> <span id="email">avinashks.me@gmail.com</span></p>
+                        <p class="mb-1"><i class="fas fa-home text-dark"></i> <span id="address">Bangalore, Karnataka, 560102</span></p>
+                        <p class="mb-1"><i class="fas fa-address-card text-dark"></i> GST - <span id="gst">ABCD1234</span> <button class="btn btn-primary sm-btn" data-toggle="modal" data-target="#editGST">Enter/Edit GST</button></p>
                         <ul class="d-flex align-items-center justify-content-between mt-3 mb-0">
                             <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAccountDetails">Account Details</button></li>
                             <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#editBioDetails">Edit</button></li>
@@ -34,16 +34,16 @@
 
             <div class="col-lg-4 mb-2">
 
-                <div class="card shadow mb-1 h-100">
-                    <div class="card-header py-2">
-                        <h6 class="m-0 font-weight-bold text-primary">Wallet</h6>
-                    </div>
-                    <div class="card-body">
+            <div class="card shadow mb-1">
+                        <div class="card-header py-2" data-toggle="collapse" href="#walletBox" role="button" aria-expanded="false" aria-controls="walletBox">
+                            <h6 class="m-0 font-weight-bold text-primary">Wallet</h6>
+                        </div>
+                        <div class="card-body collapse" id="walletBox">
                         <div>
                             <div class="vip__wallet-box">
                                 <div class="vip__total-balance text-center d-flex align-items-center justify-content-between">
                                     <h4><i class="fa fa-university"></i> Total Wallet Balance</h4>
-                                    <p>₹5000.00</p>
+                                    <p>₹<span id="wallet_balance">5000.00</span></p>
                                 </div>
                                 <div class="vip__balance-table">
                                     <table class="table mb-0">
@@ -56,11 +56,11 @@
                                         <tbody>
                                             <tr>
                                                 <td>On Hold</td>
-                                                <td>₹500.00</td>
+                                                <td>₹<span id="hold_balance">500.00</td>
                                             </tr>
                                             <tr>
                                                 <td>Withdrawn</td>
-                                                <td>₹3500.00</td>
+                                                <td>₹<span id="withdrawn_balance">3500.00</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -76,118 +76,33 @@
 
             </div>
             <div class="col-lg-4 mb-2">
-
-                <div class="card shadow mb-1 h-100">
-                    <div class="card-header py-2">
-                        <h6 class="m-0 font-weight-bold text-primary">Search</h6>
+              <!-- Notepad -->
+              <div class="card shadow mb-4">
+                  <div class="card-header py-2" data-toggle="collapse" href="#notepadBox" role="button" aria-expanded="false" aria-controls="notepadBox">
+                      <h6 class="m-0 font-weight-bold text-primary">Notepad</h6>
+                  </div>
+                  <div class="card-body collapse" id="notepadBox">
+                  <form method="POST" id="description-form">
+                    <div class="form-group">
+                      <textarea class="form-control" placeholder="Enter Notes" rows="3"></textarea>
                     </div>
-                    <div class="card-body">
-                        <a href="#nav-search" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Search</a><br/>
-                        <a href="#nav-advancesearch" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Advance Search</a><br/>
-                        <a href="#nav-placementsearch" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Exact Placement Search</a><br/>
-                        <a href="#nav-bulksearch" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Bulk Search</a><br/>
-                        <a href="#" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Category</a><br/>
-                        <a href="#" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Sub Category</a>
-                        <form>
-                          <div class="d-flex align-items-center justify-content-between mx-4">
-                            <div class="form-group mb-0">
-                                <input type="checkbox" class="form-check-input" id="whatsapp">
-                                <label class="form-check-label" for="whatsapp">Whatsapp</label>
-                            </div>
-                            <div class="form-group mb-0">
-                                <input type="checkbox" class="form-check-input" id="email">
-                                <label class="form-check-label" for="email">Email</label>
-                            </div>
-                          </div>
-                        </form>
-                    </div>
-                </div>
-
+                    <button type="button" class="btn btn-primary submit-btn-form" data-form-id="description-form">Save for next time</button>
+                  </form>
+                      
+                      
+                  </div>
+              </div>
+           
             </div>
         </div>
-        <div class="row display-flex">
-            
-            <div class="col-lg-4 mb-2">
 
-                <div class="card shadow mb-2 h-100">
-                    <div class="card-header py-2">
-                        <h6 class="m-0 font-weight-bold text-primary">Whatsapp</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="vip__btn-box">
-                            <button type="button" class="btn btn-info">85</button>
-                            <button type="button" class="btn btn-info">70</button>
-                            <button type="button" class="btn btn-info">80</button>
-                            <button type="button" class="btn btn-info">Hello</button>
-                        </div>
-                        <ul class="d-flex align-items-center justify-content-between mt-5 mb-0">
-                            <li><button type="button" class="btn btn-primary">Manage</button></li>
-                            <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#whatsappButtonAdd">Add New Button</button></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 mb-2">
-
-                <div class="card shadow mb-2 h-100">
-                    <div class="card-header py-2">
-                        <h6 class="m-0 font-weight-bold text-primary">Email</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="vip__btn-box">
-                            <button type="button" class="btn btn-info">Invoice</button>
-                            <button type="button" class="btn btn-info">NOC</button>
-                            <button type="button" class="btn btn-info">Regd. Docs</button>
-                        </div>
-                        <ul class="d-flex align-items-center justify-content-between mt-5 mb-0">
-                            <li><button type="button" class="btn btn-primary">Manage</button></li>
-                            <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#emailButtonAdd">Add New</button></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 mb-2">
-
-                <div class="card shadow mb-2">
-                    <div class="card-header py-2">
-                        <h6 class="m-0 font-weight-bold text-primary">Toggles</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="vip__toggles-box">
-                            <!-- Custom switch -->
-                            <p class="custom-control custom-switch custom-switch-lg">
-                                <input class="custom-control-input" id="customSwitch1" type="checkbox" checked>
-                                <label class="custom-control-label font-italic" for="customSwitch1">No Reference Please</label>
-                            </p>
-                            <p class="custom-control custom-switch custom-switch-lg">
-                                <input class="custom-control-input" id="customSwitch2" type="checkbox" checked>
-                                <label class="custom-control-label font-italic" for="customSwitch2">Friend Zone Access</label>
-                            </p>
-                            <p class="custom-control custom-switch custom-switch-lg">
-                                <input class="custom-control-input" id="customSwitch3" type="checkbox" checked>
-                                <label class="custom-control-label font-italic" for="customSwitch3">Send Reference</label>
-                            </p>
-                        </div>
-                        <ul class="d-flex align-items-center justify-content-between mt-3 mb-0">
-                            <li>
-                                <a href="https://google.com" target="_blank" class="btn btn-primary">ASANA URL - google.com</a>
-                                <button type="button" class="btn btn-danger sm-btn ml-2" data-toggle="modal" data-target="#editASANA">Add/Edit URL</button></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         <div class="row display-flex">
             <div class="col-lg-8 mb-2">
-                <div class="card shadow mb-2 h-100">
-                    <div class="card-header py-2">
-                        <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
-                    </div>
-                    <div class="card-body">
+            <div class="card shadow mb-2 h-100">
+                  <div class="card-header py-2" data-toggle="collapse" href="#ordersBox" role="button" aria-expanded="false" aria-controls="ordersBox">
+                      <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+                  </div>
+                  <div class="card-body collapse show" id="ordersBox">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -293,23 +208,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h6 class="mt-4">Place Order/Add to Wishlist</h6>
-                                <form
-                                    class="d-none d-sm-inline-block form-inline mb-4">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Number..."
-                                            aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary btn-bg" type="button">
-                                                <i class="fas fa-search fa-sm"></i> Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="ml-4 mt-2">
+                        <div class="my-3">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -348,16 +247,33 @@
                                     </table>
                                 </div>
                             </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h6 class="mt-4">Place Order/Add to Wishlist</h6>
+                                <form
+                                    class="d-none d-sm-inline-block form-inline mb-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Number..."
+                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-bg" type="button">
+                                                <i class="fas fa-search fa-sm"></i> Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 mb-2">
-                <div class="card shadow mb-2 h-100">
-                    <div class="card-header py-2">
-                        <h6 class="m-0 font-weight-bold text-primary">Old Orders</h6>
-                    </div>
-                    <div class="card-body">
+            <div class="card shadow mb-2 h-100">
+                  <div class="card-header py-2" data-toggle="collapse" href="#oldOrdersBox" role="button" aria-expanded="false" aria-controls="oldOrdersBox">
+                      <h6 class="m-0 font-weight-bold text-primary">Old Orders</h6>
+                  </div>
+                  <div class="card-body collapse show" id="oldOrdersBox">
                         <ul class="vip__old-orders">
                             <li><p><i class="fas fa-check-circle"></i> - <span>22</span></p></li>
                             <li><p><i class="fas fa-university"></i> - <span>22</span></p></li>
@@ -443,12 +359,12 @@
             </div>
         </div>
         <div class="row display-flex">
-            <div class="col-lg-8 mb-2">
-                <div class="card shadow mb-2 h-100">
-                    <div class="card-header py-2">
+            <div class="col-lg-12 mb-2">
+            <div class="card shadow mb-2 h-100">
+                    <div class="card-header py-2" data-toggle="collapse" href="#wishlistBox" role="button" aria-expanded="false" aria-controls="wishlistBox">
                         <h6 class="m-0 font-weight-bold text-primary">Wishlist</h6>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body collapse show" id="wishlistBox">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -545,64 +461,157 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mb-2">
-                <div class="card shadow mb-2 h-100">
-                    <div class="card-header py-2 d-flex align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Referred to</h6>
-                        <button class="btn btn-primary">Add Now</button>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Number</th>
-                                        <th>Date</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>01/02/2021</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>01/02/2021</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>01/02/2021</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-    <div class="col-lg-3 mb-4">
+    <div class="col-lg-3 mb-2">
 
-        <!-- Notepad -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Notepad</h6>
-            </div>
-            <div class="card-body">
-                <textarea class="form-control" placeholder="Enter Notes" rows="3"></textarea>
-                <button class="btn btn-primary mt-2">Save for next time</button>
+        <!-- Search  -->
+        <div class="card shadow mb-3">
+                <div class="card-header py-2" data-toggle="collapse" href="#searchBox" role="button" aria-expanded="false" aria-controls="searchBox">
+                    <h6 class="m-0 font-weight-bold text-primary">Search</h6>
+                </div>
+                <div class="card-body collapse" id="searchBox">
+                        <a href="#nav-search" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Search</a><br/>
+                        <a href="#nav-advancesearch" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Advance Search</a><br/>
+                        <a href="#nav-placementsearch" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Exact Placement Search</a><br/>
+                        <a href="#nav-bulksearch" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Bulk Search</a><br/>
+                        <a href="#" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Category</a><br/>
+                        <a href="#" class="btn btn-primary mb-2" data-toggle="modal" data-target="#searchModal">Sub Category</a>
+                        <form>
+                          <div class="d-flex align-items-center justify-content-between mx-4">
+                            <div class="form-group mb-0">
+                                <input type="checkbox" class="form-check-input" id="whatsapp">
+                                <label class="form-check-label" for="whatsapp">Whatsapp</label>
+                            </div>
+                            <div class="form-group mb-0">
+                                <input type="checkbox" class="form-check-input" id="email">
+                                <label class="form-check-label" for="email">Email</label>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+        <!-- WhatsApp -->
+        <div class="card shadow mb-3">
+          <div class="card-header py-2" data-toggle="collapse" href="#whatsappBox" role="button" aria-expanded="false" aria-controls="whatsappBox">
+              <h6 class="m-0 font-weight-bold text-primary">Whatsapp</h6>
+          </div>
+          <div class="card-body collapse" id="whatsappBox">
+            <form id="whatsapp-form" class="form-inputfullwidth d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 w-100" method="POST">
+              <div class="form-group mb-2">
+              <label for="whatsapp_number">Phone No</label>
+                <input id="whatsapp_number" type="text" name="whatsapp_number" value="" class="form-control bg-light border-0 small" placeholder="Enter Number..."
+                        aria-label="whatsapp_number" aria-describedby="basic-addon2">
+              </div>
+              <div class="form-group mb-2">
+              <label for="whatsapp_msg">Message body</label>
+                <input type="text" name="whatsapp_msg" value="" class="form-control bg-light border-0 small" placeholder="Enter Number..."
+                        aria-label="whatsapp_msg" aria-describedby="basic-addon2">
+              </div>
+              <button class="btn btn-primary btn-bg submit-btn-form py-2 px-4" data-form-id="whatsapp-form" type="button">
+                            <i class="fas fa-search fa-sm"></i> Submit
+                        </button>
+            </form>
+                <div class="vip__btn-box mt-4 d-none">
+                    <button type="button" class="btn btn-info">85</button>
+                    <button type="button" class="btn btn-info">70</button>
+                    <button type="button" class="btn btn-info">80</button>
+                    <button type="button" class="btn btn-info">Hello</button>
+                </div>
+                <ul class="d-flex align-items-center justify-content-between mt-5 mb-0">
+                    <li><button type="button" class="btn btn-primary">Manage</button></li>
+                    <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#whatsappButtonAdd">Add New Button</button></li>
+                </ul>
             </div>
         </div>
+        <!-- Email -->
+        <div class="card shadow mb-3">
+          <div class="card-header py-2" data-toggle="collapse" href="#emailBox" role="button" aria-expanded="false" aria-controls="emailBox">
+              <h6 class="m-0 font-weight-bold text-primary">Email</h6>
+          </div>
+          <div class="card-body collapse" id="emailBox">
+              <div class="vip__btn-box">
+                  <button type="button" class="btn btn-info">Invoice</button>
+                  <button type="button" class="btn btn-info">NOC</button>
+                  <button type="button" class="btn btn-info">Regd. Docs</button>
+              </div>
+              <ul class="d-flex align-items-center justify-content-between mt-5 mb-0">
+                  <li><button type="button" class="btn btn-primary">Manage</button></li>
+                  <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#emailButtonAdd">Add New</button></li>
+              </ul>
+          </div>
+      </div>
+      <!-- Toggle -->
+      <div class="card shadow mb-3">
+          <div class="card-header py-2" data-toggle="collapse" href="#togglesBox" role="button" aria-expanded="false" aria-controls="togglesBox">
+              <h6 class="m-0 font-weight-bold text-primary">Toggles</h6>
+          </div>
+          <div class="card-body collapse" id="togglesBox">
+            <div class="vip__toggles-box">
+                <!-- Custom switch -->
+                <p class="custom-control custom-switch custom-switch-lg">
+                    <input class="custom-control-input" id="customSwitch1" type="checkbox" checked>
+                    <label class="custom-control-label font-italic" for="customSwitch1">No Reference Please</label>
+                </p>
+                <p class="custom-control custom-switch custom-switch-lg">
+                    <input class="custom-control-input" id="customSwitch2" type="checkbox" checked>
+                    <label class="custom-control-label font-italic" for="customSwitch2">Friend Zone Access</label>
+                </p>
+                <p class="custom-control custom-switch custom-switch-lg">
+                    <input class="custom-control-input" id="customSwitch3" type="checkbox" checked>
+                    <label class="custom-control-label font-italic" for="customSwitch3">Send Reference</label>
+                </p>
+            </div>
+            <ul class="d-flex align-items-center justify-content-between mt-3 mb-0">
+                <li>
+                    <a href="https://google.com" target="_blank" class="btn btn-primary">ASANA URL - google.com</a>
+                    <button type="button" class="btn btn-danger sm-btn ml-2" data-toggle="modal" data-target="#editASANA">Add/Edit URL</button></li>
+            </ul>
+          </div>
+          </div>
+          <!-- REffer -->
+          <div class="card shadow mb-3">
+              <div class="card-header py-2 d-flex align-items-center justify-content-between" data-toggle="collapse" href="#referredBox" role="button" aria-expanded="false" aria-controls="referredBox">
+                  <h6 class="m-0 font-weight-bold text-primary">Referred to</h6>
+                  <button class="btn btn-primary">Add Now</button>
+              </div>
+              <div class="card-body collapse" id="referredBox">
+                  <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                              <tr>
+                                  <th>Number</th>
+                                  <th>Date</th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>1</td>
+                                  <td>01/02/2021</td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td>1</td>
+                                  <td>01/02/2021</td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td>1</td>
+                                  <td>01/02/2021</td>
+                                  <td></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
         <!-- Updates Box -->
         <div class="card shadow mb-4 vip__updates-box">
-            <div class="card-header py-3">
+            <div class="card-header py-2" data-toggle="collapse" href="#updatesBox" role="button" aria-expanded="false" aria-controls="updatesBox">
                 <h6 class="m-0 font-weight-bold text-primary">Updates & Comments</h6>
             </div>
-            <div class="card-body">
+            <div class="card-body collapse show" id="updatesBox">
                 <nav>
                   <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-updates-comments" role="tab" aria-controls="nav-updates-comments" aria-selected="true">Updates &amp; Comments</a>
@@ -678,15 +687,15 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form method="POST" id="editGST-form">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter/Edit GST...">
+                <input type="input" class="form-control" name="GST_no" placeholder="Enter/Edit GST...">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editGST-form">Save changes</button>
           </div>
         </div>
       </div>
@@ -702,15 +711,16 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="editASANA-form" method="POST">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter/ASANA URL...">
+                <input type="input" class="form-control" name="asana_url" placeholder="Enter/ASANA URL...">
+                <input type="hidden" class="contactid" name="contactid"/>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editASANA-form">Save changes</button>
           </div>
         </div>
       </div>
@@ -726,24 +736,27 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="editAccountDetails-form" method="PUT">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter Phonepe...">
+                <input type="input" class="form-control" name="paytm" placeholder="Enter paytm...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter Google Pay...">
+                <input type="input" class="form-control" name="phone" placeholder="Enter Phonepe...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter Bank Account Number...">
+                <input type="input" class="form-control" name="googlepay" placeholder="Enter Google Pay...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Enter UPI...">
+                <input type="input" class="form-control" name="account_no" placeholder="Enter Bank Account Number...">
+              </div>
+              <div class="form-group">
+                <input type="input" class="form-control" name="upi_no" placeholder="Enter UPI...">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editAccountDetails-form">Save changes</button>
           </div>
         </div>
       </div>
@@ -759,30 +772,33 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="editBioDetails-form" method="PUT">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit Name...">
+                <input type="input" class="form-control" name="user_bio_name" placeholder="Edit Name...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="+91 7002312511" disabled>
+                <input type="input" class="form-control" name="user_bio_mobile" placeholder="+91 7002312511" disabled>
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit Email...">
+                <input type="input" class="form-control" name="user_bio_email" placeholder="Edit Email...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit City...">
+                <input type="input" class="form-control" name="user_bio_address" placeholder="Edit Address">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit State...">
+                <input type="input" class="form-control" name="user_bio_city" placeholder="Edit City...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit Pin code...">
+                <input type="input" class="form-control" name="user_bio_state" placeholder="Edit State...">
+              </div>
+              <div class="form-group">
+                <input type="input" class="form-control" name="user_bio_code" placeholder="Edit Pin code...">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editBioDetails-form">Save changes</button>
           </div>
         </div>
       </div>
@@ -932,8 +948,9 @@
                             <div class="vps__simple-search">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="/search/" method="get">
+                                        <form id="simple-search-form" method="POST">
                                             <input style="width:100%;" autocomplete="off" type="search" class="form-control inputSearchMdl" name="search" id="inputSearchMdl" placeholder="Enter Number" required="" value="" autofocus="">
+                                            <input type="hidden" class="searchType-field" name="cmsearchType"/>
                                             <input hidden="" name="rtp" value="false">
                                             <input required="" type="radio" name="placement" id="s_start_with" value="1"> <label for="s_start_with">Start With</label>
                                             <input required="" type="radio" name="placement" id="s_anywhere" value="2" checked="checked"> <label for="s_anywhere">Anywhere</label>
@@ -995,7 +1012,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <input type="submit" value="Search" class="btn btn-primary btn-bg py-2">
+                                            <input type="submit" value="Search" data-form-id="simple-search-form" class="submit-btn-form btn btn-primary btn-bg py-2">
                                         </form>
                                     </div>
                                 </div>
@@ -1007,7 +1024,7 @@
                             <!-- Advance Search -->
                             <h3 class="vps__modal-title">Advance Search</h3>
                             <div class="vps__advance-search">
-                                <form class="Advanceformwcs" action="/search/">
+                                <form class="Advanceformwcs" id="Advanceformwcs-form" method="POST">
                                     <div class="row">
                                         <div class="col-md-12 text-center px-sm-4">
                                             <div class="row p-3 p-relative border-radius border-show mb-3">
@@ -1015,6 +1032,7 @@
                                                     <h4 class="mb-0">Number Placement</h4>
                                                 </div>
                                                 <div class="form-field col-md-4">
+                                                  <input type="hidden" class="searchType-field" name="cmsearchType"/>
                                                     <input type="search" class="form-control input-text" name="start_with" placeholder="Start With e.g.(+91 9855)">
                                                 </div>
                                                 <div class="form-field col-md-4">
@@ -1111,7 +1129,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <input type="submit" value="Search" class="btn btn-primary btn-bg py-2">
+                                            <input type="submit" value="Search" data-form-id="Advanceformwcs-form" class="submit-btn-form btn btn-primary btn-bg py-2">
                                         </div>
                                     </div>
                                 </form>
