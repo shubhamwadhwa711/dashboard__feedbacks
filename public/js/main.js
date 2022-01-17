@@ -1,4 +1,33 @@
 jQuery(document).ready(function($){
+    function checkSearchType(){
+        jQuery('#searchModal #nav-tab .nav-item').each(function(){
+            if($(this).hasClass('active')){
+                $('.searchType-field').val($(this).attr('aria-controls'));
+            }
+        })
+    }
+    checkSearchType();
+    $('#searchModal #nav-tab .nav-item').on('click', function(){
+        $('.searchType-field').val($(this).attr('aria-controls'));
+    })
+    $('#searchBox a').on('click', function(){
+        var tagetTab = $(this).attr('href');
+        jQuery('#searchModal #nav-tab .nav-item').each(function(){
+            if($(this).attr('href') == tagetTab){
+                $(this).click();
+            }
+        })
+    })
+    function currentUerData(){
+        var data = localStorage.getItem("allCurretData") || undefined;
+        if(data != undefined){
+            var data = JSON.parse(data);
+            userbio(data);
+            var newdata =JSON.parse(data.data) ;
+            console.log(newdata);
+        }
+    }
+    currentUerData();
     function valueset(){
         var contactid = localStorage.getItem('contactid') || undefined;
         if(contactid != undefined){
@@ -19,26 +48,63 @@ jQuery(document).ready(function($){
         searchform:'/search',
         whatsappform:'/whatsapp',
         simplesearchform:'/whatsapplink',
+        Advanceformwcsform:'/whatsapplink',
         descriptionform:'/description',
-        editASANAform:'/addasana'
+        editASANAform:'/addasana',
+        editBioDetailsform:'/edit-user-bio',
     };
     async function isEmptyForm(id){
+        var contactid = localStorage.getItem('contactid') || undefined;
+        var  mobile = localStorage.getItem('userMobile') || undefined;
         var formid = '#'+id+'';
         var formUrlName = id.replace(/\-/g, '');
         var formData = $(formid).serializeArray();
         var formMethod = $(formid).attr('method');
+        if(contactid != undefined && mobile != undefined){
+            var mb = {name: 'mobile', value :mobile};
+            var cntid = {name: 'contactid', value :contactid};
+            formData.push(mb);
+            formData.push(cntid);
+        }
         ajaxSendData(formid,formData,AjaxUrl[formUrlName],formMethod)
     }
 
     function userbio(user){
-        var data = JSON.parse(user.data, true);        
+        var data = JSON.parse(user.data);
         $("#name").text(data.firstname);
         $("#mobile").text(data.mobile);
         $("#email").text(data.email);
         $("#address").text(data.mailingstreet);
         $("#gst").text(data.cf_2213);
+
+        $('input[name="user_bio_name"]').val(data.firstname);
+        $('input[name="user_bio_mobile"]').val(data.mobile);
+        $('input[name="user_bio_email"]').val(data.email);
+        $('input[name="user_bio_address"]').val(data.mailingstreet);
+        $('input[name="user_bio_city"]').val(data.mailingcity);
+        $('input[name="user_bio_state"]').val(data.mailingstate);
+        $('input[name="user_bio_code"]').val(data.mailingzip);
+        
+        userbio_gstNo_Update(data);
+        userbio_account_details(data);
         localStorage.setItem('contactid', data.contactid);
+        localStorage.setItem('userMobile',data.mobile);
         valueset();
+    }
+    function userbio_gstNo_Update(res){
+        $("#gst").text(res.cf_2213);
+        $('input[name="GST_no"]').val(res.cf_2213);
+    }
+    function hideModal(formid){
+        formid = formid.replace("-form", "");
+        $(formid).modal('hide');
+    }
+    function userbio_account_details(resDate){
+        $('#editAccountDetails-form input[name="paytm"]').val(resDate.cf_2083);
+        $('#editAccountDetails-form input[name="phone"]').val(resDate.cf_2085);
+        $('#editAccountDetails-form input[name="googlepay"]').val(resDate.cf_2081);
+        $('#editAccountDetails-form input[name="account_no"]').val(resDate.cf_2087);
+        $('#editAccountDetails-form input[name="upi_no"]').val(resDate.cf_2234);
     }
     function wallet(amount){
         var data = JSON.parse(amount.data, true);        
@@ -67,6 +133,41 @@ jQuery(document).ready(function($){
         var allresData = JSON.parse(resDate.data);
         $('#whatsapp_number').val(allresData.mobile);
     }
+    function checkdata(){
+        var pop = localStorage.getItem('allCurretData');
+        console.log(pop);
+    }
+    function redirectHome(resDate){
+        if(resDate.redirect != undefined){
+            var rdurl = window.location.origin+resDate.redirect;
+            window.location.replace(rdurl);
+        }
+        else if(resDate.error != undefined){
+            $(formid).find('.form-group-err').removeClass('d-none');
+            $(formid).find('.form-group-err').text(resDate.message)
+        }
+    }
+
+    function localStorageDataUpdate(){
+        var orgData = localStorage.getItem('allCurretData') || undefined;
+        var getdata = localStorage.getItem('tempdata') || undefined;
+        if(orgData != undefined && getdata != undefined){
+            var orgData = JSON.parse(orgData);
+            var orgData = JSON.parse(orgData.data);
+            
+            var resdata = JSON.parse(getdata);
+            console.log("Seting Local value");
+            var updateDate ='';
+            updateDate = {...orgData,...resdata};
+            console.log(updateDate);
+            var data = {data: JSON.stringify(updateDate)};
+            console.log(data);
+            localStorage.setItem('allCurretData', JSON.stringify(data));
+            currentUerData();
+        }
+        localStorage.removeItem('tempdata');
+        
+    }
     function ajaxSendData(formid,formData, formUrl,formMethod){
         if(!$(formid).find('.form-group-err').hasClass('d-none')){
             $(formid).find('.form-group-err').addClass('d-none');
@@ -77,10 +178,10 @@ jQuery(document).ready(function($){
             type: formMethod,
             data:formData,
             success: function(data) {
-                var resDate = JSON.parse(data);
-                
+                var resDate = data;
+                console.log(resDate);
                 if(resDate.data != undefined){
-                    var allresData = JSON.parse(resDate.data);
+                    var allresData = resDate.data;
                     console.log(allresData);
                     if(allresData.status == 'failed'){
                         Swal.fire({
@@ -92,10 +193,12 @@ jQuery(document).ready(function($){
                 }
                 switch (resDate.componet) {
                     case 'all':
+                        localStorage.setItem("allCurretData",JSON.stringify(resDate));
                         userbio(resDate);
                         wallet(resDate);
                         whatsappphoneset(resDate);
-                        var data1 = JSON.parse(resDate.data, true);
+
+                        var data1 = resDate.data;
                         if(data1.cf_2236 != ''){
                             $("#ref_by").text(data1.cf_2236);
                         }
@@ -103,21 +206,43 @@ jQuery(document).ready(function($){
                             $("#ref_by").text('.....');
                         }
                         $('#next_follow_date').val(data1.cf_2238);
+                        
                         SuccessMessage();
                         break;
                     case 'description': 
                         alert('prototype Wins!');
                         break;
                     case 'search': 
+                        $('#searchModal').modal('hide');
                         SuccessMessage();
                         break;		
                     case 'whatapp': 
                         whatsappmsg(resDate);
                         break;
+                    case 'userbio_gst': 
+                        localStorage.setItem('tempdata',JSON.stringify(resDate.update_content));
+                        localStorageDataUpdate();
+                        hideModal(formid);
+                        SuccessMessage();
+                        break;
+                    case 'userbio_account_details': 
+                        localStorage.setItem('tempdata',JSON.stringify(resDate.update_content));
+                        localStorageDataUpdate();
+                        hideModal(formid);
+                        SuccessMessage();
+                    case 'userbio_update_detailts':
+                        localStorage.setItem('tempdata',JSON.stringify(resDate.update_content));
+                        localStorageDataUpdate();
+                        hideModal(formid);
+                        SuccessMessage();
+                        break;
+                    case 'login':
+                        redirectHome(resDate);
+                        break;
                     default:
                         alert('Nobody Wins!');
                 }
-               
+               $(formid).modal("hide");
                 if(resDate.redirect != undefined){
                     var rdurl = window.location.origin+resDate.redirect;
                     window.location.replace(rdurl);
@@ -146,6 +271,7 @@ jQuery(document).ready(function($){
             data:'logout',
             success: function(data) {
                 if(data.redirect != undefined){
+                    localStorage.clear();
                     var rdurl = window.location.origin+data.redirect;
                     localStorage.clear();
                     window.location.replace(rdurl);

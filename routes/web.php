@@ -27,4 +27,5 @@ Route::post('/addasana', 'HomeController@addasanafunc');
 Route::post('/whatsapplink', 'HomeController@whatsapplinksend');
 Route::post('/add-edit-gst', 'HomeController@AddEditGST');
 Route::put('/edit-acount-details', 'HomeController@EditAccountDetails');
+Route::put('/edit-user-bio', 'HomeController@EditUserBio');
 

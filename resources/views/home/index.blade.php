@@ -738,6 +738,9 @@
           <div class="modal-body">
             <form id="editAccountDetails-form" method="PUT">
               <div class="form-group">
+                <input type="input" class="form-control" name="paytm" placeholder="Enter paytm...">
+              </div>
+              <div class="form-group">
                 <input type="input" class="form-control" name="phone" placeholder="Enter Phonepe...">
               </div>
               <div class="form-group">
@@ -769,30 +772,33 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="editBioDetails-form" method="PUT">
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit Name...">
+                <input type="input" class="form-control" name="user_bio_name" placeholder="Edit Name...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="+91 7002312511" disabled>
+                <input type="input" class="form-control" name="user_bio_mobile" placeholder="+91 7002312511" disabled>
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit Email...">
+                <input type="input" class="form-control" name="user_bio_email" placeholder="Edit Email...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit City...">
+                <input type="input" class="form-control" name="user_bio_address" placeholder="Edit Address">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit State...">
+                <input type="input" class="form-control" name="user_bio_city" placeholder="Edit City...">
               </div>
               <div class="form-group">
-                <input type="input" class="form-control" placeholder="Edit Pin code...">
+                <input type="input" class="form-control" name="user_bio_state" placeholder="Edit State...">
+              </div>
+              <div class="form-group">
+                <input type="input" class="form-control" name="user_bio_code" placeholder="Edit Pin code...">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary submit-btn-form" data-form-id="editBioDetails-form">Save changes</button>
           </div>
         </div>
       </div>
@@ -944,6 +950,7 @@
                                     <div class="col-md-12">
                                         <form id="simple-search-form" method="POST">
                                             <input style="width:100%;" autocomplete="off" type="search" class="form-control inputSearchMdl" name="search" id="inputSearchMdl" placeholder="Enter Number" required="" value="" autofocus="">
+                                            <input type="hidden" class="searchType-field" name="cmsearchType"/>
                                             <input hidden="" name="rtp" value="false">
                                             <input required="" type="radio" name="placement" id="s_start_with" value="1"> <label for="s_start_with">Start With</label>
                                             <input required="" type="radio" name="placement" id="s_anywhere" value="2" checked="checked"> <label for="s_anywhere">Anywhere</label>
@@ -1017,7 +1024,7 @@
                             <!-- Advance Search -->
                             <h3 class="vps__modal-title">Advance Search</h3>
                             <div class="vps__advance-search">
-                                <form class="Advanceformwcs" action="/search/">
+                                <form class="Advanceformwcs" id="Advanceformwcs-form" method="POST">
                                     <div class="row">
                                         <div class="col-md-12 text-center px-sm-4">
                                             <div class="row p-3 p-relative border-radius border-show mb-3">
@@ -1025,6 +1032,7 @@
                                                     <h4 class="mb-0">Number Placement</h4>
                                                 </div>
                                                 <div class="form-field col-md-4">
+                                                  <input type="hidden" class="searchType-field" name="cmsearchType"/>
                                                     <input type="search" class="form-control input-text" name="start_with" placeholder="Start With e.g.(+91 9855)">
                                                 </div>
                                                 <div class="form-field col-md-4">
@@ -1121,7 +1129,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <input type="submit" value="Search" class="btn btn-primary btn-bg py-2">
+                                            <input type="submit" value="Search" data-form-id="Advanceformwcs-form" class="submit-btn-form btn btn-primary btn-bg py-2">
                                         </div>
                                     </div>
                                 </form>
