@@ -28,4 +28,5 @@ Route::post('/whatsapplink', 'HomeController@whatsapplinksend');
 Route::post('/add-edit-gst', 'HomeController@AddEditGST');
 Route::put('/edit-acount-details', 'HomeController@EditAccountDetails');
 Route::put('/edit-user-bio', 'HomeController@EditUserBio');
+Route::post('/phonenumber-check', 'HomeController@PhoneNumberCheck');
 
