@@ -52,6 +52,8 @@ jQuery(document).ready(function($){
         descriptionform:'/description',
         editASANAform:'/addasana',
         editBioDetailsform:'/edit-user-bio',
+        placeOrderNumberform:'/phonenumber-check',
+
     };
     async function isEmptyForm(id){
         var contactid = localStorage.getItem('contactid') || undefined;
@@ -66,7 +68,8 @@ jQuery(document).ready(function($){
             formData.push(mb);
             formData.push(cntid);
         }
-        ajaxSendData(formid,formData,AjaxUrl[formUrlName],formMethod)
+
+        ajaxSendData(formid,formData,AjaxUrl[formUrlName],formMethod);
     }
 
     function userbio(user){
@@ -168,6 +171,35 @@ jQuery(document).ready(function($){
         localStorage.removeItem('tempdata');
         
     }
+
+
+    function phoneNumbercheck(resdata){
+        var allresData = JSON.parse(resdata.data);
+        console.log(allresData);
+        if(allresData.data.number_status === '1'){
+            localStorage.setItem('allCurrentNumberSearch',JSON.stringify(allresData.data));
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'This Number not Available!'
+              })
+        }
+    }
+
+    function phoneNumberSet(){
+        var numberSearch = localStorage.getItem('allCurrentNumberSearch') || undefined;
+        if(numberSearch != undefined){
+            var data = JSON.parse(numberSearch);
+            console.log(data);
+            var single_amount = data.cf_942;
+            var og_amount = data.cf_980;
+            var total_amount =  data.cf_942 + data.cf_980;
+            $('#placeNumbersearchSet tbody').html('<tr><td>'+og_amount+'</td><td>'+single_amount+'</td><td>'+total_amount+'</td><td class="vip-sticky__action"><div class="btn-group"><button type="button" class="btn btn-primary btn-bg dropdown-toggle" data-toggle="dropdown" ria-expanded="false">Action</button><div class="dropdown-menu"><a class="dropdown-item" href="#">Place Order</a><a class="dropdown-item" href="#">Add to Wishlist</a></div></div></td></tr>');
+        }
+    }
+    phoneNumberSet();
     function ajaxSendData(formid,formData, formUrl,formMethod){
         if(!$(formid).find('.form-group-err').hasClass('d-none')){
             $(formid).find('.form-group-err').addClass('d-none');
@@ -238,6 +270,9 @@ jQuery(document).ready(function($){
                         break;
                     case 'login':
                         redirectHome(resDate);
+                        break;
+                    case 'phoneNumberCheck':
+                        phoneNumbercheck(resDate);
                         break;
                     default:
                         alert('Nobody Wins!');

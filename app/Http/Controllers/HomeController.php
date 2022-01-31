@@ -214,7 +214,7 @@ class HomeController extends Controller
     }
     //send whatsapp
     public function whatsappsend(Request $request){
-        $whatsapp_number = $request->input('whatsapp_number');
+        $whatsapp_number = $request->input('mobile');
         $whatapp_msg = $request->input('whatsapp_msg');
         $curl = curl_init();
         $CurlPost = ['message_type'=>'Send','message_body'=> $whatapp_msg,'whatsapp_withccode'=>$whatsapp_number];
@@ -384,6 +384,41 @@ class HomeController extends Controller
             $obj = $response;
         }
         $output =['data'=> $obj, 'componet'=>'userbio_update_detailts','update_content'=> $CurlPost];
+        return response()->json($output);
+    }
+
+    public function PhoneNumberCheck(Request $request){
+        $input = $request->all();
+        $phone = $input['mobile'];
+        $contID = $input['contactid'];
+        $request_number = $input['request_number'];
+        $CurlPost = ['request_number'=>$request_number];
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://vipnumbershop.com/api-getnumberfulldetails/",
+        CURLOPT_SSL_VERIFYHOST=>false,
+        CURLOPT_SSL_VERIFYPEER=>false,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_HTTPHEADER => array("Cache-Control: no-cache",),
+        CURLOPT_POSTFIELDS=>$CurlPost,
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+        $obj = $err;
+        } else {
+            $obj = $response;
+        }
+        $output =['data'=> $obj, 'componet'=>'phoneNumberCheck','update_content'=> $CurlPost];
         return response()->json($output);
     }
     

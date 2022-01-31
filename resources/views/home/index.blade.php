@@ -210,14 +210,12 @@
                         </div>
                         <div class="my-3">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="placeNumbersearchSet" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>OG Amount</th>
                                                 <th>Amount</th>
                                                 <th>Total Sum</th>
-                                                <th></th>
-                                                <th></th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -226,19 +224,15 @@
                                                 <td>2000.00</td>
                                                 <td><p contenteditable="true">5000.00</p></td>
                                                 <td>7000.00</td>
-                                                <td class="text-center"><button class="btn btn-primary">Place Order</button></td>
-                                                <td class="text-center"><button class="btn btn-primary">Add to Wishlist</button></td>
+                                                
                                                 <td class="vip-sticky__action">
                                                     <div class="btn-group">
                                                       <button type="button" class="btn btn-primary btn-bg dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                         Action
                                                       </button>
                                                       <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#">Separated link</a>
+                                                        <a class="dropdown-item" href="#">Place Order</a>
+                                                        <a class="dropdown-item" href="#">Add to Wishlist</a>
                                                       </div>
                                                     </div>
                                                 </td>
@@ -251,12 +245,14 @@
                             <div>
                                 <h6 class="mt-4">Place Order/Add to Wishlist</h6>
                                 <form
+                                method="POST"
+                                    id="place-Order-Number-form"
                                     class="d-none d-sm-inline-block form-inline mb-4">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Number..."
-                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" name="request_number" class="form-control bg-light border-0 small" placeholder="Enter Number..."
+                                            aria-label="Search" aria-describedby="basic-addon2" value="9988698886">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary btn-bg" type="button">
+                                            <button class="btn btn-primary btn-bg submit-btn-form" type="button" data-form-id="place-Order-Number-form">
                                                 <i class="fas fa-search fa-sm"></i> Submit
                                             </button>
                                         </div>
@@ -499,11 +495,6 @@
           <div class="card-body collapse" id="whatsappBox">
             <form id="whatsapp-form" class="form-inputfullwidth d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 w-100" method="POST">
               <div class="form-group mb-2">
-              <label for="whatsapp_number">Phone No</label>
-                <input id="whatsapp_number" type="text" name="whatsapp_number" value="" class="form-control bg-light border-0 small" placeholder="Enter Number..."
-                        aria-label="whatsapp_number" aria-describedby="basic-addon2">
-              </div>
-              <div class="form-group mb-2">
               <label for="whatsapp_msg">Message body</label>
                 <input type="text" name="whatsapp_msg" value="" class="form-control bg-light border-0 small" placeholder="Enter Number..."
                         aria-label="whatsapp_msg" aria-describedby="basic-addon2">
@@ -518,6 +509,7 @@
                     <button type="button" class="btn btn-info">80</button>
                     <button type="button" class="btn btn-info">Hello</button>
                 </div>
+
                 <ul class="d-flex align-items-center justify-content-between mt-5 mb-0">
                     <li><button type="button" class="btn btn-primary">Manage</button></li>
                     <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#whatsappButtonAdd">Add New Button</button></li>
@@ -535,6 +527,18 @@
                   <button type="button" class="btn btn-info">NOC</button>
                   <button type="button" class="btn btn-info">Regd. Docs</button>
               </div>
+              <div class="form-wrapper mt-3">
+                <form id="email-form" class="form-inputfullwidth d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 w-100" method="POST">
+                  <div class="form-group mb-2">
+                  <label for="whatsapp_msg">Message body</label>
+                    <input type="text" name="whatsapp_msg" value="" class="form-control bg-light border-0 small" placeholder="Enter Number..."
+                            aria-label="whatsapp_msg" aria-describedby="basic-addon2">
+                  </div>
+                  <button class="btn btn-primary btn-bg submit-btn-form py-2 px-4" data-form-id="email-form" type="button">
+                                <i class="fas fa-search fa-sm"></i> Submit
+                            </button>
+                </form>
+                </div>
               <ul class="d-flex align-items-center justify-content-between mt-5 mb-0">
                   <li><button type="button" class="btn btn-primary">Manage</button></li>
                   <li><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#emailButtonAdd">Add New</button></li>
